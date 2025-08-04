@@ -1,0 +1,15 @@
+version: '3'
+services:
+  postgres:
+    container_name: sample-postgre-db
+    build: ./image/postgres
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "demo"
+      TZ: "Asia/Tokyo"
